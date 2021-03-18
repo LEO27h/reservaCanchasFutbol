@@ -43,15 +43,15 @@ pipeline {
         }
     }
 
-    stage('Static Code Analysis') {
-        steps{
-            echo '------------>Análisis de código estático<------------'
-            withSonarQubeEnv('Sonar') {
-                sh "${tool name: 'SonarScanner', \
-            type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
-            }
-        }
-    }
+//     stage('Static Code Analysis') {
+//         steps{
+//             echo '------------>Análisis de código estático<------------'
+//             withSonarQubeEnv('Sonar') {
+//                 sh "${tool name: 'SonarScanner', \
+//             type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+//             }
+//         }
+//     }
 
     stage('Compile & Unit Tests') {
       steps{
@@ -64,8 +64,7 @@ pipeline {
       steps{
         echo '------------>Análisis de código estático<------------'
         withSonarQubeEnv('Sonar') {
-            sh "${tool name: 'SonarScanner',
-        type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+            sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
         }
       }
     }
