@@ -17,6 +17,7 @@ pipeline {
   }
 
   //Aquí comienzan los “items” del Pipeline
+  stages{
     stage('Checkout'){
             steps{
             echo "------------>Checkout<------------"
@@ -28,10 +29,27 @@ pipeline {
                 gitTool: 'Default',
                 submoduleCfg: [],
                 userRemoteConfigs: [[
-                    credentialsId: 'gitHub_LehoHerrera',
-                    url:'https://github.com/yucaci24/PC_MultiProjectGradle'
+                    credentialsId: 'GitHub_leonherrera',
+                    url:'https://github.com/LEO27h/reservaCanchasFutbol'
                 ]]
             ])
+        }
+    }
+
+    stage('Clean'){
+        steps{
+            echo "------------>Clean project<------------"
+            sh 'gradle --b ./build.gradle clean compileJava'
+        }
+    }
+
+    stage('Static Code Analysis') {
+        steps{
+            echo '------------>Análisis de código estático<------------'
+            withSonarQubeEnv('Sonar') {
+                sh "${tool name: 'SonarScanner', \
+            type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+            }
         }
     }
 
@@ -46,7 +64,8 @@ pipeline {
       steps{
         echo '------------>Análisis de código estático<------------'
         withSonarQubeEnv('Sonar') {
-sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+            sh "${tool name: 'SonarScanner',
+        type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
         }
       }
     }
@@ -54,6 +73,7 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
     stage('Build') {
       steps {
         echo "------------>Build<------------"
+        sh 'gradle --b ./build.gradle build -x test'
       }
     }
   }
@@ -62,8 +82,16 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
     always {
       echo 'This will always run'
     }
+    failure {
+        echo 'This will run only if failed'
+        mail (to: 'leon.herrera@ceiba.com.co',
+    subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
+    body: "Something is wrong with ${env.BUILD_URL}")
+
+    }
     success {
       echo 'This will run only if successful'
+      junit 'testPrueba/*.xml'
     }
     failure {
       echo 'This will run only if failed'
