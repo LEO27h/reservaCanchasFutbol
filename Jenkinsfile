@@ -81,19 +81,16 @@ pipeline {
     always {
       echo 'This will always run'
     }
+    success {
+      echo 'This will run only if successful'
+      junit 'testPrueba/*.xml'
+    }
     failure {
         echo 'This will run only if failed'
         mail (to: 'leon.herrera@ceiba.com.co',
     subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
     body: "Something is wrong with ${env.BUILD_URL}")
 
-    }
-    success {
-      echo 'This will run only if successful'
-      junit 'testPrueba/*.xml'
-    }
-    failure {
-      echo 'This will run only if failed'
     }
     unstable {
       echo 'This will run only if the run was marked as unstable'
