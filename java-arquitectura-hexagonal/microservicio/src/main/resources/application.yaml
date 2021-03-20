@@ -12,10 +12,10 @@ server:
 
 spring:
    datasource:
-      driver-class-name: 
+      driver-class-name: org.mariadb.jdbc.Driver
       type: com.zaxxer.hikari.HikariDataSource
-      jdbcUrl: 
-      username: 
-      password: 
+      jdbcUrl: jdbc:mariadb://localhost:3306/reservascancha
+      username: root
+      password: rootCeiba
       hikari:
          poolName: pool
