@@ -37,13 +37,6 @@ pipeline {
         }
     }
 
-    stage('prueba'){
-        steps{
-            echo "------------>Clean project<------------"
-            sh 'gradle --b ./java-arquitectura-hexagonal/reservaCanchasFutbolService/build.gradle clean'
-        }      
-    }
-    
     stage('Clean'){
         steps{
             echo "------------>Clean project<------------"
