@@ -39,7 +39,7 @@ pipeline {
     stage('Clean'){
         steps{
             echo "------------>Clean project<------------"
-            sh 'gradle --b ./build.gradle clean compileJava'
+            sh 'gradle --b ./reservaCanchasFutbol/build.gradle clean compileJava'
         }
     }
 
@@ -56,7 +56,7 @@ pipeline {
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>Unit Tests<------------"
-        sh 'gradle --b ./build.gradle test'
+        sh 'gradle --b ./reservaCanchasFutbol/build.gradle test'
       }
     }
 
@@ -72,7 +72,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-//         sh 'gradle --b ./build.gradle build -x test'
+//         sh 'gradle --b ./reservaCanchasFutbol/build.gradle build -x test'
       }
     }
   }
