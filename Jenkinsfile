@@ -41,7 +41,7 @@ pipeline {
         steps{
             echo "------------>Clean project<------------"
             sh 'ls'
-            gradlew '--b ./build.gradle clean compileJava'
+            sh './gradle --b ./build.gradle clean compileJava'
         }
     }
 
