@@ -40,7 +40,7 @@ pipeline {
     stage('Clean'){
         steps{
             echo "------------>Clean project<------------"
-            sh 'gradle --b ./microservicio/build.gradle clean'
+            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle clean'
         }
     }
 
