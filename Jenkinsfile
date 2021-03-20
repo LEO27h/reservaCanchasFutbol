@@ -1,9 +1,10 @@
 pipeline {
   //Donde se va a ejecutar el Pipeline
-  agent {
+/*  agent {
     label 'Slave_Induccion'
   }
-
+*/
+  agent any
   //Opciones específicas de Pipeline dentro del Pipeline
   options {
     	buildDiscarder(logRotator(numToKeepStr: '3'))
