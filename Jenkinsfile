@@ -37,10 +37,16 @@ pipeline {
         }
     }
 
+    stage('prueba'){
+        steps{
+            echo "------------>Clean project<------------"
+            sh 'gradle --b ./java-arquitectura-hexagonal/reservaCanchasFutbolService/build.gradle clean'
+        }      
+    }
     stage('Clean'){
         steps{
             echo "------------>Clean project<------------"
-            sh 'gradle --b ./build.gradle clean'
+            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle clean'
         }
     }
 
@@ -57,7 +63,7 @@ pipeline {
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>Unit Tests<------------"
-        sh 'gradle --b ./build.gradle test'
+        sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle test'
       }
     }
 
@@ -73,7 +79,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-         sh 'gradle --b ./build.gradle -x test'
+         sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle -x test'
       }
     }
   }
