@@ -72,7 +72,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-//         sh 'gradle --b ./reservaCanchasFutbol/build.gradle build -x test'
+         sh 'gradle --b ./reservaCanchasFutbol/build.gradle build -x test'
       }
     }
   }
