@@ -14,7 +14,7 @@ pipeline {
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
     jdk 'JDK8_Centos' //Preinstalada en la Configuración del Master
-    gradle 'Gradle6.0.1_Centos' //Preinstalada en la Configuración del Master
+    gradle 'Gradle4.10' //Preinstalada en la Configuración del Master
   }
 
   //Aquí comienzan los “items” del Pipeline
@@ -41,7 +41,7 @@ pipeline {
         steps{
             echo "------------>Clean project<------------"
             sh 'ls'
-            sh './gradle --b ./build.gradle clean compileJava'
+            sh 'gradle --b ./build.gradle clean compileJava'
         }
     }
 
