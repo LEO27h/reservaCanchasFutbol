@@ -41,8 +41,8 @@ pipeline {
         steps{
             echo "------------>Clean project<------------"
             sh 'ls'
-            sh 'gradle clean'
-            sh 'gradlew --b ./java-arquitectura-hexagonal/microservicio/build.gradle clean compileJava'
+            //sh 'gradle clean'
+            sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle clean compileJava'
         }
     }
 
