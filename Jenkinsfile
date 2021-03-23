@@ -39,20 +39,19 @@ pipeline {
     stage('Clean'){
         steps{
             echo "------------>Clean project<------------"
-            //sh 'gradle clean'
             sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle clean compileJava'
         }
     }
 
-     stage('Static Code Analysis') {
-         steps{
-             echo '------------>Análisis de código estático<------------'
-             withSonarQubeEnv('Sonar') {
-                 sh "${tool name: 'SonarScanner', \
-             type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
-             }
-         }
-     }
+//     stage('Static Code Analysis') {
+//         steps{
+//             echo '------------>Análisis de código estático<------------'
+//             withSonarQubeEnv('Sonar') {
+//                 sh "${tool name: 'SonarScanner', \
+//             type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+//             }
+//         }
+//     }
 
     stage('Compile & Unit Tests') {
       steps{
