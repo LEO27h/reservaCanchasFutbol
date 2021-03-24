@@ -13,14 +13,14 @@ public interface RepositorioReserva {
 
 
     /**
-     *
+     * Permite actualizar los datos de un reserva
      * @param reserva
      */
     void actualizar(Reserva reserva);
 
 
     /**
-     *
+     * Permite eliminar el registro de una reserva por medio de su id
      * @param idReserva
      */
     void eliminar(Long idReserva);
