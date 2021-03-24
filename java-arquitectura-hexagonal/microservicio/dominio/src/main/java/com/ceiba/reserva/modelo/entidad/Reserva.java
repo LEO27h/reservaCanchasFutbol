@@ -1,7 +1,10 @@
 package com.ceiba.reserva.modelo.entidad;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 
+@Getter
 public class Reserva {
     private Long idReserva;
     private Long idUsuario;

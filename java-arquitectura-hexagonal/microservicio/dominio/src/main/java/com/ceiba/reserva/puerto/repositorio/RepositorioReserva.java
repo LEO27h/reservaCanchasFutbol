@@ -11,6 +11,12 @@ public interface RepositorioReserva {
      */
     Long crear(Reserva reserva);
 
+    /**
+     * Verifica si existe reserva asociada al idReserva
+     * @param idReserva
+     * @return
+     */
+    boolean existe(Long idReserva);
 
     /**
      * Permite actualizar los datos de un reserva
