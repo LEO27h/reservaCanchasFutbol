@@ -6,10 +6,12 @@ create table usuario (
  primary key (id)
 );
 
-create table reserva (
+create table reserva_cancha (
  id_reserva int(11) not null auto_increment,
  id_usuario int(11) not null,
  valor_pagado double(6, 2),
- fecha_ultimo_pago datetime null,
+ fecha_partido datetime null,
+ reservas_consecutivas int(1),
+ capacidad_cancha varchar(40),
  primary key (id_reserva)
 );

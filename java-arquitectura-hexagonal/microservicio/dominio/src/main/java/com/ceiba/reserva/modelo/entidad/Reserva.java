@@ -6,15 +6,19 @@ import java.time.LocalDateTime;
 
 @Getter
 public class Reserva {
-    private Long idReserva;
-    private Long idUsuario;
+    private int idReserva;
+    private int idUsuario;
     private double valorPagado;
-    private LocalDateTime fechaUltimoPago;
+    private LocalDateTime fechaDeJuego;
+    private int reservasConsecutivas;
+    private String capacidadCancha;
 
-    public Reserva(Long idReserva, Long idUsuario, double valorPagado, LocalDateTime fechaUltimoPago) {
+    public Reserva(int idReserva, int idUsuario, double valorPagado, LocalDateTime fechaDeJuego, int reservasConsecutivas, String capacidadCancha) {
         this.idReserva = idReserva;
         this.idUsuario = idUsuario;
         this.valorPagado = valorPagado;
-        this.fechaUltimoPago = fechaUltimoPago;
+        this.fechaDeJuego = fechaDeJuego;
+        this.reservasConsecutivas = reservasConsecutivas;
+        this.capacidadCancha = capacidadCancha;
     }
 }

@@ -23,7 +23,7 @@ pipeline {
             echo "------------>Checkout<------------"
             checkout([
                 $class: 'GitSCM',
-                branches: [[name: '*/development']],
+                branches: [[name: '*/main']],
                 doGenerateSubmoduleConfigurations: false,
                 extensions: [],
                 gitTool: 'Default',
@@ -42,16 +42,6 @@ pipeline {
             sh 'gradle --b ./java-arquitectura-hexagonal/microservicio/build.gradle clean compileJava'
         }
     }
-
-//     stage('Static Code Analysis') {
-//         steps{
-//             echo '------------>Análisis de código estático<------------'
-//             withSonarQubeEnv('Sonar') {
-//                 sh "${tool name: 'SonarScanner', \
-//             type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
-//             }
-//         }
-//     }
 
     stage('Compile & Unit Tests') {
       steps{
