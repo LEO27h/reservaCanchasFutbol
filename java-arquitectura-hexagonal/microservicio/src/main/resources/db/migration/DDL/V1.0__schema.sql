@@ -7,11 +7,11 @@ create table usuario (
 );
 
 create table reserva_cancha (
- id_reserva int(11) not null auto_increment,
- id_usuario int(11) not null,
- valor_pagado double(6, 2),
- fecha_partido datetime null,
- reservas_consecutivas int(1),
- capacidad_cancha varchar(40),
- primary key (id_reserva)
+ idReserva BIGINT(11) not null auto_increment,
+ idUsuario BIGINT(11) not null,
+ valorPagado double(8, 2),
+ fechaDeJuego datetime null,
+ reservasConsecutivas int(1),
+ capacidadCancha varchar(40),
+ primary key (idReserva)
 );

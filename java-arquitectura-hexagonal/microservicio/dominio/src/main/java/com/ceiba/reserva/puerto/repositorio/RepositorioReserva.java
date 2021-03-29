@@ -9,14 +9,14 @@ public interface RepositorioReserva {
      * @param reserva
      * @return el id generado
      */
-    int crear(Reserva reserva);
+    Long  crear(Reserva reserva);
 
     /**
      * Verifica si existe reserva asociada al idReserva
      * @param idReserva
      * @return
      */
-    boolean existe(int idReserva);
+    boolean existe(Long idReserva);
 
     /**
      * Permite actualizar los datos de un reserva
@@ -29,6 +29,6 @@ public interface RepositorioReserva {
      * Permite eliminar el registro de una reserva por medio de su id
      * @param idReserva
      */
-    void eliminar(int idReserva);
+    void eliminar(Long idReserva);
 
 }

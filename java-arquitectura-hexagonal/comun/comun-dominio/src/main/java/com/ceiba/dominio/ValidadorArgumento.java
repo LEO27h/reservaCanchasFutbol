@@ -7,12 +7,12 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
-import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
-import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
+import com.ceiba.dominio.excepcion.*;
 
 public class ValidadorArgumento {
-	
+
+    private static final Double CINCUENTA_POR_CIENTO = 0.5;
+
 	private ValidadorArgumento() {}
 
     public static void validarObligatorio(Object valor, String mensaje) {
@@ -60,6 +60,19 @@ public class ValidadorArgumento {
     public static void validarMenor(Long numeroInicial, Long numeroFinal, String mensaje) {
         if (numeroInicial > numeroFinal) {
             throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
+
+    public static void validarValorMaximoCancha(Double valorAPagar, Double valorMaximoCancha, String mensaje) {
+        if (valorAPagar > valorMaximoCancha) {
+            throw new ExcepcionValidarValorMaximoCancha(mensaje);
+        }
+    }
+
+    public static void validarAbonoMinimoCancha(Double valorAPagar, Double abonoMinimoCancha, String mensaje) {
+
+        if (valorAPagar < abonoMinimoCancha * CINCUENTA_POR_CIENTO) {
+            throw new ExcepcionValidarAbonoMinimoCancha(mensaje);
         }
     }
 

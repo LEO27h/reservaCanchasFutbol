@@ -10,7 +10,7 @@ public class ServicioEliminarReserva {
         this.repositorioReserva = repositorioReserva;
     }
 
-    public void ejecutar(int id) {
-        this.repositorioReserva.eliminar(id);
+    public void ejecutar(Long idReserva) {
+        this.repositorioReserva.eliminar(idReserva);
     }
 }

@@ -7,8 +7,8 @@ import java.util.List;
 public interface DaoReserva {
 
     /**
-     * Permite listar usuarios
-     * @return los usuarios
+     * Permite listar reservas
+     * @return
      */
     List<DtoReserva> listar();
 }
