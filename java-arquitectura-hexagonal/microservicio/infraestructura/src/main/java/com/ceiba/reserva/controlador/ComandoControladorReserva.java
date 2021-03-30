@@ -32,16 +32,16 @@ public class ComandoControladorReserva {
         return manejadorCrearReserva.ejecutar(comandoReserva);
     }
 
-    @DeleteMapping(value="/{id}")
+    @DeleteMapping(value="/{idReserva}")
     @ApiOperation("Eliminar reserva")
-    public void eliminar(@PathVariable Long id) {
-        manejadorEliminarReserva.ejecutar(id);
+    public void eliminar(@PathVariable Long idReserva) {
+        manejadorEliminarReserva.ejecutar(idReserva);
     }
 
-    @PutMapping(value="/{id}")
+    @PutMapping(value="/{idReserva}")
     @ApiOperation("Actualizar reserva")
-    public void actualizar(@RequestBody ComandoReserva comandoReserva, @PathVariable Long id) {
-        comandoReserva.setIdReserva(id);
+    public void actualizar(@RequestBody ComandoReserva comandoReserva, @PathVariable Long idReserva) {
+        comandoReserva.setIdReserva(idReserva);
         manejadorActualizarReserva.ejecutar(comandoReserva);
     }
 }
