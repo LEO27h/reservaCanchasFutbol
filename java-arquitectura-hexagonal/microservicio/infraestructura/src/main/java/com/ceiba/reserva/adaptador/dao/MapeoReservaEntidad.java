@@ -17,9 +17,8 @@ public class MapeoReservaEntidad implements RowMapper<Reserva>, MapperResult {
         Long idUsuario = resultSet.getLong("idUsuario");
         double valorPagado = resultSet.getDouble("valorPagado");
         LocalDateTime fechaDeJuego = extraerLocalDateTime(resultSet, "fechaDeJuego");
-        int reservasConsecutivas = resultSet.getInt("reservasConsecutivas");
         String capacidadCancha = resultSet.getString("capacidadCancha");
 
-        return new Reserva(idReserva, idUsuario, valorPagado, fechaDeJuego, reservasConsecutivas, capacidadCancha);
+        return new Reserva(idReserva, idUsuario, valorPagado, fechaDeJuego, capacidadCancha);
     }
 }

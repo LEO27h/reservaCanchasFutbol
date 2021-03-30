@@ -19,10 +19,9 @@ public class Reserva {
     private Long idUsuario;
     private double valorPagado;
     private LocalDateTime fechaDeJuego;
-    private int reservasConsecutivas;
     private String capacidadCancha;
 
-    public Reserva(Long idReserva, Long idUsuario, double valorPagado, LocalDateTime fechaDeJuego, int reservasConsecutivas, String capacidadCancha) {
+    public Reserva(Long idReserva, Long idUsuario, double valorPagado, LocalDateTime fechaDeJuego, String capacidadCancha) {
 
         ValidadorArgumento.validarValorMaximoCancha(valorPagado, capacidadCancha.equals(TIPO_CANCHA_FUTBOL_OCHO) ? COSTO_CANCHA_FUTBOL_OCHO : COSTO_CANCHA_FUTBOL_CINCO, EL_VALOR_TOTAL_SOBREPASA_EL_COSTO_DE_LA_CANCHA);
         ValidadorArgumento.validarAbonoMinimoCancha(valorPagado, capacidadCancha.equals(TIPO_CANCHA_FUTBOL_OCHO) ? COSTO_CANCHA_FUTBOL_OCHO : COSTO_CANCHA_FUTBOL_CINCO, EL_VALOR_NO_CUMPLE_CON_LA_CONDICION_MINIMA_DE_ABONO_PARA_LA_CANCHA);
@@ -31,11 +30,11 @@ public class Reserva {
         this.idUsuario = idUsuario;
         this.valorPagado = valorPagado;
         this.fechaDeJuego = fechaDeJuego;
-        this.reservasConsecutivas = reservasConsecutivas;
         this.capacidadCancha = capacidadCancha;
     }
 
     public void abonar(Double valorAAbonar) {
+        ValidadorArgumento.validarValorMaximoCancha(valorPagado + valorAAbonar, capacidadCancha.equals(TIPO_CANCHA_FUTBOL_OCHO) ? COSTO_CANCHA_FUTBOL_OCHO : COSTO_CANCHA_FUTBOL_CINCO, EL_VALOR_TOTAL_SOBREPASA_EL_COSTO_DE_LA_CANCHA);
         valorPagado += valorAAbonar;
     }
 }

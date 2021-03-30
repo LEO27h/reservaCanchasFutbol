@@ -11,7 +11,6 @@ create table reserva_cancha (
  idUsuario BIGINT(11) not null,
  valorPagado double(8, 2),
  fechaDeJuego datetime null,
- reservasConsecutivas int(1),
  capacidadCancha varchar(40),
  primary key (idReserva)
 );

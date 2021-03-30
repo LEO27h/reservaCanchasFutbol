@@ -1,2 +1,2 @@
-select idReserva,idUsuario,valorPagado,fechaDeJuego,reservasConsecutivas,capacidadCancha
+select idReserva,idUsuario,valorPagado,fechaDeJuego,capacidadCancha
 from reserva_cancha

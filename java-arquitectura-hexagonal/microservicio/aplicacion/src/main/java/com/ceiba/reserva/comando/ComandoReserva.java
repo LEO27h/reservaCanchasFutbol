@@ -16,7 +16,6 @@ public class ComandoReserva {
     private Long idUsuario;
     private double valorPagado;
     private LocalDateTime fechaDeJuego;
-    private int reservasConsecutivas;
     private String capacidadCancha;
 
 }
