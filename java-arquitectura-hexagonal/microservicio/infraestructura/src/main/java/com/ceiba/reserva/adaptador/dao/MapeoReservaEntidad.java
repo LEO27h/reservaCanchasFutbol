@@ -1,18 +1,18 @@
 package com.ceiba.reserva.adaptador.dao;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.reserva.modelo.dto.DtoReserva;
+import com.ceiba.reserva.modelo.entidad.Reserva;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
-public class MapeoReserva implements RowMapper<DtoReserva>, MapperResult {
+public class MapeoReservaEntidad implements RowMapper<Reserva>, MapperResult {
+
 
     @Override
-    public DtoReserva mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-
+    public Reserva mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Long idReserva = resultSet.getLong("idReserva");
         Long idUsuario = resultSet.getLong("idUsuario");
         double valorPagado = resultSet.getDouble("valorPagado");
@@ -20,7 +20,6 @@ public class MapeoReserva implements RowMapper<DtoReserva>, MapperResult {
         int reservasConsecutivas = resultSet.getInt("reservasConsecutivas");
         String capacidadCancha = resultSet.getString("capacidadCancha");
 
-        return new DtoReserva(idReserva, idUsuario, valorPagado, fechaDeJuego, reservasConsecutivas, capacidadCancha);
+        return new Reserva(idReserva, idUsuario, valorPagado, fechaDeJuego, reservasConsecutivas, capacidadCancha);
     }
-
 }

@@ -24,6 +24,13 @@ public interface RepositorioReserva {
      */
     void actualizar(Reserva reserva);
 
+    /**
+     * Retorna objeto tipo Reserva asociado con el idReserva recibido
+     * @param idReserva
+     * @return
+     */
+    Reserva obtener(Long idReserva);
+
 
     /**
      * Permite eliminar el registro de una reserva por medio de su id

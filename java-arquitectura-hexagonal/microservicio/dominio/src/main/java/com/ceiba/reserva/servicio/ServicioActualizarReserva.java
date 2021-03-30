@@ -15,16 +15,20 @@ public class ServicioActualizarReserva {
         this.repositorioReserva = repositorioReserva;
     }
 
-    public void ejecutar(Reserva reserva) {
-        validarExistenciaPrevia(reserva);
+    public void ejecutar(Double valorPagado, Long idReserva) {
+        validarExistenciaPrevia(idReserva);
+        Reserva reserva = repositorioReserva.obtener(idReserva);
+        reserva.abonar(valorPagado);
         this.repositorioReserva.actualizar(reserva);
     }
 
-    private void validarExistenciaPrevia(Reserva reserva) {
-        boolean existe = this.repositorioReserva.existe(reserva.getIdReserva());
+    private void validarExistenciaPrevia(Long idReserva) {
+        boolean existe = this.repositorioReserva.existe(idReserva);
         if(!existe) {
             throw new ExcepcionReservaNoEncontrada(LA_RESERVA_NO_EXISTE_EN_EL_SISTEMA);
         }
     }
+
+
 
 }

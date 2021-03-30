@@ -15,7 +15,7 @@ public class ComandoReservaTestDataBuilder {
     public ComandoReservaTestDataBuilder() {
         idReserva = 1234L;
         idUsuario = 123456789L;
-        valorPagado = 80000;
+        valorPagado = 80000D;
         fechaDeJuego = LocalDateTime.now();
         reservasConsecutivas = 2;
         capacidadCancha = "cancha futbol ocho";

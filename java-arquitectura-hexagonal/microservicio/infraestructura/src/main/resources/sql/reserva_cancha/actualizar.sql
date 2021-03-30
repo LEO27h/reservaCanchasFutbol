@@ -1,4 +1,3 @@
 update reserva_cancha
-set valorPagado = :valorPagado,
-	reservasConsecutivas = :reservasConsecutivas
+set valorPagado = :valorPagado
 where idReserva = :idReserva

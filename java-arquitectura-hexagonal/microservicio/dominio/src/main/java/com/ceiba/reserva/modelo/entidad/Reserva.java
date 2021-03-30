@@ -24,7 +24,7 @@ public class Reserva {
 
     public Reserva(Long idReserva, Long idUsuario, double valorPagado, LocalDateTime fechaDeJuego, int reservasConsecutivas, String capacidadCancha) {
 
-        ValidadorArgumento.validarValorMaximoCancha(valorPagado, capacidadCancha.equals(TIPO_CANCHA_FUTBOL_OCHO) ? COSTO_CANCHA_FUTBOL_OCHO : COSTO_CANCHA_FUTBOL_CINCO , EL_VALOR_TOTAL_SOBREPASA_EL_COSTO_DE_LA_CANCHA);
+        ValidadorArgumento.validarValorMaximoCancha(valorPagado, capacidadCancha.equals(TIPO_CANCHA_FUTBOL_OCHO) ? COSTO_CANCHA_FUTBOL_OCHO : COSTO_CANCHA_FUTBOL_CINCO, EL_VALOR_TOTAL_SOBREPASA_EL_COSTO_DE_LA_CANCHA);
         ValidadorArgumento.validarAbonoMinimoCancha(valorPagado, capacidadCancha.equals(TIPO_CANCHA_FUTBOL_OCHO) ? COSTO_CANCHA_FUTBOL_OCHO : COSTO_CANCHA_FUTBOL_CINCO, EL_VALOR_NO_CUMPLE_CON_LA_CONDICION_MINIMA_DE_ABONO_PARA_LA_CANCHA);
 
         this.idReserva = idReserva;
@@ -33,5 +33,9 @@ public class Reserva {
         this.fechaDeJuego = fechaDeJuego;
         this.reservasConsecutivas = reservasConsecutivas;
         this.capacidadCancha = capacidadCancha;
+    }
+
+    public void abonar(Double valorAAbonar) {
+        valorPagado += valorAAbonar;
     }
 }

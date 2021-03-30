@@ -1,6 +1,7 @@
 package com.ceiba.reserva.controlador;
 
 import com.ceiba.ComandoRespuesta;
+import com.ceiba.reserva.comando.ComandoAbonoReserva;
 import com.ceiba.reserva.comando.ComandoReserva;
 import com.ceiba.reserva.comando.manejador.ManejadorActualizarReserva;
 import com.ceiba.reserva.comando.manejador.ManejadorCrearReserva;
@@ -40,8 +41,7 @@ public class ComandoControladorReserva {
 
     @PutMapping(value="/{idReserva}")
     @ApiOperation("Actualizar reserva")
-    public void actualizar(@RequestBody ComandoReserva comandoReserva, @PathVariable Long idReserva) {
-        comandoReserva.setIdReserva(idReserva);
-        manejadorActualizarReserva.ejecutar(comandoReserva);
+    public void actualizar(@RequestBody ComandoAbonoReserva comandoAbonoReserva, @PathVariable Long idReserva) {
+        manejadorActualizarReserva.ejecutar(comandoAbonoReserva, idReserva);
     }
 }

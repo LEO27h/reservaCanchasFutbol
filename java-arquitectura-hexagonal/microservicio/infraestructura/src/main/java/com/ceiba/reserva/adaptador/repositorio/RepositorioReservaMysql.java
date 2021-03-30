@@ -2,10 +2,15 @@ package com.ceiba.reserva.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import com.ceiba.reserva.adaptador.dao.MapeoReserva;
+import com.ceiba.reserva.adaptador.dao.MapeoReservaEntidad;
+import com.ceiba.reserva.modelo.dto.DtoReserva;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
 
 @Repository
 public class RepositorioReservaMysql implements RepositorioReserva {
@@ -23,6 +28,9 @@ public class RepositorioReservaMysql implements RepositorioReserva {
 
     @SqlStatement(namespace="reserva_cancha", value="existe")
     private static String sqlExiste;
+
+    @SqlStatement(namespace = "reserva_cancha", value = "obtener")
+    private static String sqlConsultarReserva;
 
 //    @SqlStatement(namespace="reserva_cancha", value="existeExcluyendoId")
 //    private static String sqlExisteExcluyendoId;
@@ -45,6 +53,13 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     @Override
     public void actualizar(Reserva reserva) {
         this.customNamedParameterJdbcTemplate.actualizar(reserva, sqlActualizar);
+    }
+
+    @Override
+    public Reserva obtener(Long idReserva) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource. addValue("idReserva", idReserva);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate(). queryForObject(sqlConsultarReserva, mapSqlParameterSource, new MapeoReservaEntidad());
     }
 
     @Override

@@ -23,7 +23,7 @@ public class ServicioActualizarReservaTest {
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
         ServicioActualizarReserva servicioActualizarReserva = new ServicioActualizarReserva(repositorioReserva);
         // act - assert
-        BasePrueba.assertThrows(() -> servicioActualizarReserva.ejecutar(reserva), ExcepcionReservaNoEncontrada.class,"La reserva no existe en el sistema");
+        BasePrueba.assertThrows(() -> servicioActualizarReserva.ejecutar(75000D, 1L), ExcepcionReservaNoEncontrada.class,"La reserva no existe en el sistema");
     }
 
 }
