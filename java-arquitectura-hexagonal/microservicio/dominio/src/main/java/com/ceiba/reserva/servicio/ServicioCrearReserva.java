@@ -1,8 +1,8 @@
 package com.ceiba.reserva.servicio;
 
+import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 
 
 public class ServicioCrearReserva {
@@ -11,13 +11,14 @@ public class ServicioCrearReserva {
 
     private final RepositorioReserva repositorioReserva;
 
-
     public ServicioCrearReserva(RepositorioReserva repositorioReserva) {
         this.repositorioReserva = repositorioReserva;
     }
 
     public Long ejecutar(Reserva reserva) {
         validarExistenciaPrevia(reserva);
+        reserva.aplicarDescuento(this.encontrarOcurrenciasPorUsuario(reserva.getIdUsuario()));
+        reserva.validarPagoCompletado();
         return this.repositorioReserva.crear(reserva);
     }
 
@@ -27,4 +28,10 @@ public class ServicioCrearReserva {
             throw new ExcepcionDuplicidad(LA_RESERVA_YA_EXISTE);
         }
     }
+
+    private Long encontrarOcurrenciasPorUsuario(Long idUsuario){
+        return this.repositorioReserva.ocurrenciasPorUsuario(idUsuario);
+    }
+
+
 }

@@ -1,1 +1,1 @@
-select count(1) from reserva_cancha where idUsuario = :idUsuario and nombre = :nombre
+select count(1) from reserva_cancha where idUsuario = :idUsuario

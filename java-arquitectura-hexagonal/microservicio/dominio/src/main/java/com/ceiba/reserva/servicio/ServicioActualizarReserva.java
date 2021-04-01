@@ -19,6 +19,7 @@ public class ServicioActualizarReserva {
         validarExistenciaPrevia(idReserva);
         Reserva reserva = repositorioReserva.obtener(idReserva);
         reserva.abonar(valorPagado);
+        reserva.validarPagoCompletado();
         this.repositorioReserva.actualizar(reserva);
     }
 
@@ -28,7 +29,5 @@ public class ServicioActualizarReserva {
             throw new ExcepcionReservaNoEncontrada(LA_RESERVA_NO_EXISTE_EN_EL_SISTEMA);
         }
     }
-
-
 
 }

@@ -12,5 +12,6 @@ create table reserva_cancha (
  valorPagado double(8, 2),
  fechaDeJuego datetime null,
  capacidadCancha varchar(40),
+ pagoCompletado varchar(1),
  primary key (idReserva)
 );

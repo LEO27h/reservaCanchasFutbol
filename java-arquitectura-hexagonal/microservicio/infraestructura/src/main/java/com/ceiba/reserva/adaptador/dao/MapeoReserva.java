@@ -18,8 +18,9 @@ public class MapeoReserva implements RowMapper<DtoReserva>, MapperResult {
         double valorPagado = resultSet.getDouble("valorPagado");
         LocalDateTime fechaDeJuego = extraerLocalDateTime(resultSet, "fechaDeJuego");
         String capacidadCancha = resultSet.getString("capacidadCancha");
+        String pagoCompletado = resultSet.getString("pagoCompletado");
 
-        return new DtoReserva(idReserva, idUsuario, valorPagado, fechaDeJuego, capacidadCancha);
+        return new DtoReserva(idReserva, idUsuario, valorPagado, fechaDeJuego, capacidadCancha, pagoCompletado);
     }
 
 }

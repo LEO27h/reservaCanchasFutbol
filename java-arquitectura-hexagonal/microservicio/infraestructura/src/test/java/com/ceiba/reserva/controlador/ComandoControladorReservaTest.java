@@ -37,8 +37,8 @@ public class ComandoControladorReservaTest {
         mockMvc.perform(post("/reservas-canchas")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoReserva)))
-                .andExpect(status().isOk());
-//                .andExpect(content().json("{'valor': 2}"));
+                .andExpect(status().isOk())
+                .andExpect(content().json("{'valor': 2}"));
     }
 
     @Test

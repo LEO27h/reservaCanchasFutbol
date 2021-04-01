@@ -17,5 +17,5 @@ public class ComandoReserva {
     private double valorPagado;
     private LocalDateTime fechaDeJuego;
     private String capacidadCancha;
-
+    private String pagoCompletado;
 }

@@ -9,7 +9,6 @@ public class ReservaTestDataBuilder {
     private Long idUsuario;
     private double valorPagado;
     private LocalDateTime fechaDeJuego;
-    private int reservasConsecutivas;
     private String capacidadCancha;
 
     public ReservaTestDataBuilder() {
@@ -17,7 +16,6 @@ public class ReservaTestDataBuilder {
         idUsuario = 123456789L;
         valorPagado = 80000;
         fechaDeJuego = LocalDateTime.now();
-        reservasConsecutivas = 2;
         capacidadCancha = "cancha futbol ocho";
     }
 
@@ -26,5 +24,5 @@ public class ReservaTestDataBuilder {
         return  this;
     }
 
-    public Reserva build() {return new Reserva(idReserva, idUsuario, valorPagado, fechaDeJuego, reservasConsecutivas, capacidadCancha); }
+    public Reserva build() {return new Reserva(idReserva, idUsuario, valorPagado, fechaDeJuego, capacidadCancha); }
 }

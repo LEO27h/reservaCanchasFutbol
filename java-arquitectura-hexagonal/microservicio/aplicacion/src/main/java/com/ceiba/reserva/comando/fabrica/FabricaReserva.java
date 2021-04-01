@@ -13,7 +13,8 @@ public class FabricaReserva {
                 comandoReserva.getIdUsuario(),
                 comandoReserva.getValorPagado(),
                 comandoReserva.getFechaDeJuego(),
-                comandoReserva.getCapacidadCancha()
+                comandoReserva.getCapacidadCancha(),
+                comandoReserva.getPagoCompletado()
         );
     }
 }

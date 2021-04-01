@@ -2,15 +2,11 @@ package com.ceiba.reserva.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.reserva.adaptador.dao.MapeoReserva;
 import com.ceiba.reserva.adaptador.dao.MapeoReservaEntidad;
-import com.ceiba.reserva.modelo.dto.DtoReserva;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
-
-import java.time.LocalDateTime;
 
 @Repository
 public class RepositorioReservaMysql implements RepositorioReserva {
@@ -30,10 +26,10 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     private static String sqlExiste;
 
     @SqlStatement(namespace = "reserva_cancha", value = "obtener")
-    private static String sqlConsultarReserva;
+    private static String sqlObtener;
 
-//    @SqlStatement(namespace="reserva_cancha", value="existeExcluyendoId")
-//    private static String sqlExisteExcluyendoId;
+    @SqlStatement(namespace = "reserva_cancha", value = "ocurrenciasPorUsuario")
+    private static String sqlOcurrenciasPorUsuario;
 
     public RepositorioReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -58,16 +54,23 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     @Override
     public Reserva obtener(Long idReserva) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource. addValue("idReserva", idReserva);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate(). queryForObject(sqlConsultarReserva, mapSqlParameterSource, new MapeoReservaEntidad());
+        mapSqlParameterSource.addValue("idReserva", idReserva);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtener, mapSqlParameterSource, new MapeoReservaEntidad());
+    }
+
+    @Override
+    public Long ocurrenciasPorUsuario(Long idUsuario) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("idUsuario", idUsuario );
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlOcurrenciasPorUsuario, mapSqlParameterSource, Long.class);
     }
 
     @Override
     public void eliminar(Long idReserva) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("idReserva", idReserva);
-
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, mapSqlParameterSource);
     }
+
 
 }

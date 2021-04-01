@@ -11,6 +11,7 @@ public class ServicioEliminarReserva {
     }
 
     public void ejecutar(Long idReserva) {
+        repositorioReserva.obtener(idReserva);
         this.repositorioReserva.eliminar(idReserva);
     }
 }

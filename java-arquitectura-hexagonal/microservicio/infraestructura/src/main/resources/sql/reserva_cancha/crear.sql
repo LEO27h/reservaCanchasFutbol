@@ -1,2 +1,2 @@
-insert into reserva_cancha (idUsuario, valorPagado, fechaDeJuego, capacidadCancha)
-values (:idUsuario, :valorPagado, :fechaDeJuego, :capacidadCancha)
+insert into reserva_cancha (idUsuario, valorPagado, fechaDeJuego, capacidadCancha, pagoCompletado)
+values (:idUsuario, :valorPagado, :fechaDeJuego, :capacidadCancha, :pagoCompletado)

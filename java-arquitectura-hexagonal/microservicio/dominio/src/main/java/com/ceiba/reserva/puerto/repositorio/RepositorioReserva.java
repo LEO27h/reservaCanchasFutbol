@@ -31,6 +31,12 @@ public interface RepositorioReserva {
      */
     Reserva obtener(Long idReserva);
 
+    /**
+     * Retorna número de ocurrencias por idUsuario en la tabla reservasCancha
+     * @param idUsuario
+     * @return
+     */
+    Long ocurrenciasPorUsuario(Long idUsuario);
 
     /**
      * Permite eliminar el registro de una reserva por medio de su id

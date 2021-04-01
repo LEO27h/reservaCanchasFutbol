@@ -13,4 +13,5 @@ public class DtoReserva {
     private double valorPagado;
     private LocalDateTime fechaDeJuego;
     private String capacidadCancha;
+    private String pagoCompletado;
 }

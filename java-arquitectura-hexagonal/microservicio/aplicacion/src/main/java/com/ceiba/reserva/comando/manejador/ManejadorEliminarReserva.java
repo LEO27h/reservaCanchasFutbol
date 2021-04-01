@@ -1,18 +1,19 @@
 package com.ceiba.reserva.comando.manejador;
 
+import com.ceiba.reserva.servicio.ServicioEliminarReserva;
 import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ManejadorEliminarReserva {
 
-    private final ServicioEliminarUsuario servicioEliminarUsuario;
+    private final ServicioEliminarReserva servicioEliminarReserva;
 
-    public ManejadorEliminarReserva(ServicioEliminarUsuario servicioEliminarUsuario) {
-        this.servicioEliminarUsuario = servicioEliminarUsuario;
+    public ManejadorEliminarReserva(ServicioEliminarReserva servicioEliminarReserva) {
+        this.servicioEliminarReserva = servicioEliminarReserva;
     }
 
     public void ejecutar(Long idReserva) {
-        this.servicioEliminarUsuario.ejecutar(idReserva);
+        this.servicioEliminarReserva.ejecutar(idReserva);
     }
 }
