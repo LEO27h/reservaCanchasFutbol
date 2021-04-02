@@ -21,4 +21,14 @@ public class ServicioEliminarReservaTest {
         BasePrueba.assertThrows(() -> servicioEliminarReserva.ejecutar(Mockito.anyLong()), ExcepcionReservaNoEncontrada.class, "La reserva no existe en el sistema");
 
     }
+
+    public void fechaCancelacionValida(){
+        // arrange
+        Reserva reserva = new ReservaTestDataBuilder().build();
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(true);
+        Mockito.when(repositorioReserva.obtener(Mockito.anyLong())).thenReturn(reserva);
+//        Mockito.when(fechaCancelacionValida(true))
+        // act - assert
+    }
 }

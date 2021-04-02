@@ -14,6 +14,7 @@ public class Reserva {
     private static final int CONDICION_RESERVAS_CONSECUTIVAS_PARA_DESCUENTO = 3;
     private static final int RESERVA_ACTUAL = 1;
     private static final int SIN_EXISTENCIA_DE_RESGISTROS = 0;
+    private static final int NUMERO_DE_DIAS_PREVIOS_PERMITIDOS_PARA_CANCELACION = 1;
     private static final double COSTO_CANCHA_FUTBOL_OCHO = 150000;
     private static final double COSTO_CANCHA_FUTBOL_CINCO = 100000;
     private static final double PORCETANJE_DESCUENTO_FUTBOL_OCHO = 0.3;
@@ -95,7 +96,10 @@ public class Reserva {
 
     public Boolean fechaCancelacionValida(LocalDateTime fechaDeJuego){
         Boolean cumpleCondicion = false;
-        int compareTo  = fechaDeJuego.compareTo(LocalDateTime.now());
+        int diferenciaEnDias  = fechaDeJuego.compareTo(LocalDateTime.now());
+        if (diferenciaEnDias <= NUMERO_DE_DIAS_PREVIOS_PERMITIDOS_PARA_CANCELACION){
+            cumpleCondicion = true;
+        }
         return cumpleCondicion;
     }
 
