@@ -19,6 +19,21 @@ public interface RepositorioReserva {
     boolean existe(Long idReserva);
 
     /**
+     * Verifica si existe un pago pendiente en la BD
+     * @param idReserva
+     * @return
+     */
+    boolean existePagoPendiente(Long idReserva, String pagoCompletado);
+
+    /**
+     * Retorna true si la reserva ya fue pagada
+     * @param idReserva
+     * @param pagoCompletado
+     * @return
+     */
+    boolean reservaFuePagada(Long idReserva, String pagoCompletado);
+
+    /**
      * Permite actualizar los datos de un reserva
      * @param reserva
      */
@@ -36,7 +51,7 @@ public interface RepositorioReserva {
      * @param idUsuario
      * @return
      */
-    Long ocurrenciasPorUsuario(Long idUsuario);
+    Long ocurrenciasPorUsuario(Long idUsuario, String pagoCompletado);
 
     /**
      * Permite eliminar el registro de una reserva por medio de su id

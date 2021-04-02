@@ -10,6 +10,7 @@ public class ReservaTestDataBuilder {
     private double valorPagado;
     private LocalDateTime fechaDeJuego;
     private String capacidadCancha;
+    private String pagoCompletado;
 
     public ReservaTestDataBuilder() {
         idReserva = 1234L;
@@ -17,12 +18,20 @@ public class ReservaTestDataBuilder {
         valorPagado = 80000;
         fechaDeJuego = LocalDateTime.now();
         capacidadCancha = "cancha futbol ocho";
+        pagoCompletado = "N";
     }
 
     public ReservaTestDataBuilder conValorPagado(double valorPagado) {
         this.valorPagado = valorPagado;
-        return  this;
+        return this;
     }
 
-    public Reserva build() {return new Reserva(idReserva, idUsuario, valorPagado, fechaDeJuego, capacidadCancha); }
+    public ReservaTestDataBuilder conCapacidadCancha(String capacidadCancha) {
+        this.capacidadCancha = capacidadCancha;
+        return this;
+    }
+
+    public Reserva build() {
+        return new Reserva(idReserva, idUsuario, valorPagado, fechaDeJuego, capacidadCancha, pagoCompletado);
+    }
 }

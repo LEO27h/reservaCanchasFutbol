@@ -1,0 +1,1 @@
+select count(1) from reserva_cancha where idReserva = :idReserva and pagoCompletado= :pagoCompletado

@@ -10,6 +10,7 @@ public class ComandoReservaTestDataBuilder {
     private double valorPagado;
     private LocalDateTime fechaDeJuego;
     private String capacidadCancha;
+    private String pagoCompletado;
 
     public ComandoReservaTestDataBuilder() {
         idReserva = 1234L;
@@ -17,7 +18,8 @@ public class ComandoReservaTestDataBuilder {
         valorPagado = 80000D;
         fechaDeJuego = LocalDateTime.now();
         capacidadCancha = "cancha futbol ocho";
+        pagoCompletado = "N";
     }
 
-    public ComandoReserva build() { return new ComandoReserva(idReserva, idUsuario, valorPagado, fechaDeJuego, capacidadCancha);}
+    public ComandoReserva build() { return new ComandoReserva(idReserva, idUsuario, valorPagado, fechaDeJuego, capacidadCancha, pagoCompletado);}
 }

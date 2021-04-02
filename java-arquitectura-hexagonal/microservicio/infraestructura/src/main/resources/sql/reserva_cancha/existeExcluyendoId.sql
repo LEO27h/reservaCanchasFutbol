@@ -1,1 +1,0 @@
-select count(1) from reserva_cancha where idUsuario = :idUsuario

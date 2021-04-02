@@ -8,17 +8,17 @@ import com.ceiba.reserva.servicio.testDataBuilder.ReservaTestDataBuilder;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-public class ServicioActualizarReservaTest {
+public class ServicioEliminarReservaTest {
 
     @Test
-    public void validarUsuarioExistenciaPreviaTest() {
+    public void existePagoPendienteTest() {
         // arrange
         Reserva reserva = new ReservaTestDataBuilder().build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
-        ServicioActualizarReserva servicioActualizarReserva = new ServicioActualizarReserva(repositorioReserva);
+        ServicioEliminarReserva servicioEliminarReserva = new ServicioEliminarReserva(repositorioReserva);
         // act - assert
-        BasePrueba.assertThrows(() -> servicioActualizarReserva.ejecutar(75000D, 1L), ExcepcionReservaNoEncontrada.class,"La reserva no existe en el sistema");
-    }
+        BasePrueba.assertThrows(() -> servicioEliminarReserva.ejecutar(Mockito.anyLong()), ExcepcionReservaNoEncontrada.class, "La reserva no existe en el sistema");
 
+    }
 }

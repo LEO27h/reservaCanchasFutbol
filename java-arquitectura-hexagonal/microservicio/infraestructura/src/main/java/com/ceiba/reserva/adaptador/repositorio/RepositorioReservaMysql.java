@@ -22,7 +22,7 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     @SqlStatement(namespace="reserva_cancha", value="eliminar")
     private static String sqlEliminar;
 
-    @SqlStatement(namespace="reserva_cancha", value="existe")
+    @SqlStatement(namespace = "reserva_cancha", value = "existe")
     private static String sqlExiste;
 
     @SqlStatement(namespace = "reserva_cancha", value = "obtener")
@@ -31,19 +31,19 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     @SqlStatement(namespace = "reserva_cancha", value = "ocurrenciasPorUsuario")
     private static String sqlOcurrenciasPorUsuario;
 
+    @SqlStatement(namespace = "reserva_cancha", value = "existePagoPendiente")
+    private static String sqlExistePagoPendiente;
+
+    @SqlStatement(namespace = "reserva_cancha", value = "reservaFuePagada")
+    private static String sqlReservaFuePagada;
+
     public RepositorioReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
 
     @Override
-    public Long crear(Reserva reserva) { return this.customNamedParameterJdbcTemplate.crear(reserva,sqlCrear);}
-
-    @Override
-    public boolean existe(Long idReserva) {
-        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue("idReserva", idReserva);
-
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste, mapSqlParameterSource, Boolean.class);
+    public Long crear(Reserva reserva) {
+        return this.customNamedParameterJdbcTemplate.crear(reserva, sqlCrear);
     }
 
     @Override
@@ -59,18 +59,40 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     }
 
     @Override
-    public Long ocurrenciasPorUsuario(Long idUsuario) {
-        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue("idUsuario", idUsuario );
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlOcurrenciasPorUsuario, mapSqlParameterSource, Long.class);
-    }
-
-    @Override
     public void eliminar(Long idReserva) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("idReserva", idReserva);
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, mapSqlParameterSource);
     }
 
+    @Override
+    public Long ocurrenciasPorUsuario(Long idUsuario, String pagoCompletado) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("idUsuario", idUsuario);
+        mapSqlParameterSource.addValue("pagoCompletado", pagoCompletado);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlOcurrenciasPorUsuario, mapSqlParameterSource, Long.class);
+    }
 
+    @Override
+    public boolean existe(Long idReserva) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("idReserva", idReserva);
+
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste, mapSqlParameterSource, Boolean.class);
+    }
+
+    @Override
+    public boolean existePagoPendiente(Long idUsuario, String pagoCompletado) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("idUsuario", idUsuario);
+        mapSqlParameterSource.addValue("pagoCompletado", pagoCompletado);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePagoPendiente, mapSqlParameterSource, Boolean.class);
+    }
+
+    public boolean reservaFuePagada(Long idReserva, String pagoCompletado) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("idReserva", idReserva);
+        mapSqlParameterSource.addValue("pagoCompletado", pagoCompletado);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlReservaFuePagada, mapSqlParameterSource, Boolean.class);
+    }
 }
