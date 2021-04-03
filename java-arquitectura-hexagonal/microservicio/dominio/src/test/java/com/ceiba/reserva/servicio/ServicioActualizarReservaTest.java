@@ -15,12 +15,12 @@ public class ServicioActualizarReservaTest {
     @Test
     public void validarReservaExistenciaPreviaTest() {
         // arrange
-        Reserva reserva = new ReservaTestDataBuilder().build();
+        Reserva reserva = new ReservaTestDataBuilder().conValorPagado(75000).build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
         ServicioActualizarReserva servicioActualizarReserva = new ServicioActualizarReserva(repositorioReserva);
         // act - assert
-        BasePrueba.assertThrows(() -> servicioActualizarReserva.ejecutar(75000D, 1L), ExcepcionReservaNoEncontrada.class,"La reserva no existe en el sistema");
+        BasePrueba.assertThrows(() -> servicioActualizarReserva.ejecutar(reserva.getValorPagado(), Mockito.anyLong()), ExcepcionReservaNoEncontrada.class,"La reserva no existe en el sistema");
     }
 
     @Test
@@ -33,7 +33,7 @@ public class ServicioActualizarReservaTest {
         Mockito.when(repositorioReserva.reservaFuePagada(Mockito.anyLong(),Mockito.anyString())).thenReturn(true);
         ServicioActualizarReserva servicioActualizarReserva = new ServicioActualizarReserva(repositorioReserva);
         // act - assert
-        BasePrueba.assertThrows(() -> servicioActualizarReserva.ejecutar(Mockito.anyDouble(), Mockito.anyLong()), ExcepcionReservaPagada.class, "La reserva ya fue pagada");
+        BasePrueba.assertThrows(() -> servicioActualizarReserva.ejecutar(reserva.getValorPagado(), Mockito.anyLong()), ExcepcionReservaPagada.class, "La reserva ya fue pagada");
     }
 
 }

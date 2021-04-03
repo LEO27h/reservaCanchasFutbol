@@ -3,6 +3,7 @@ package com.ceiba.reserva.servicio.testDataBuilder;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class ReservaTestDataBuilder {
     private Long idReserva;
@@ -28,6 +29,11 @@ public class ReservaTestDataBuilder {
 
     public ReservaTestDataBuilder conCapacidadCancha(String capacidadCancha) {
         this.capacidadCancha = capacidadCancha;
+        return this;
+    }
+
+    public ReservaTestDataBuilder conFechaDeJuego(LocalDateTime fechaDeJuego){
+        this.fechaDeJuego = fechaDeJuego;
         return this;
     }
 
