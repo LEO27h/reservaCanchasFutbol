@@ -29,11 +29,11 @@ public class ConsultaControladorReservaTest {
         // arrange
 
         // act - assert
-        mockMvc.perform(get("/sql/usuario/reserva_cancha")
+        mockMvc.perform(get("reservas-canchas")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].nombre", is("test")));
+                .andExpect(jsonPath("$[0].capacidadCancha", is("cancha futbol ocho")));
     }
 
 

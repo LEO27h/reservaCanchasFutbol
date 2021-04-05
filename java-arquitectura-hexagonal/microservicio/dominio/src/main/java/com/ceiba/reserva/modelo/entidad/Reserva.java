@@ -1,6 +1,7 @@
 package com.ceiba.reserva.modelo.entidad;
 
 import com.ceiba.dominio.ValidadorArgumento;
+import com.ceiba.reserva.servicio.ServicioDeFechaYHora;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -94,13 +95,9 @@ public class Reserva {
         setearPagoCompletado(completo);
     }
 
-    public Boolean fechaCancelacionValida(LocalDateTime fechaDeJuego){
-        Boolean cumpleCondicion = false;
-        int diferenciaEnDias  = fechaDeJuego.compareTo(LocalDateTime.now());
-        if (diferenciaEnDias <= NUMERO_DE_DIAS_PREVIOS_PERMITIDOS_PARA_CANCELACION){
-            cumpleCondicion = true;
-        }
-        return cumpleCondicion;
+    public Boolean sePuedeCancelar(ServicioDeFechaYHora fechaYHora){
+        int diferenciaEnDias  = fechaYHora.actual().compareTo(fechaDeJuego);
+        return diferenciaEnDias >= NUMERO_DE_DIAS_PREVIOS_PERMITIDOS_PARA_CANCELACION;
     }
 
     public void setearPagoCompletado(Boolean completo) {

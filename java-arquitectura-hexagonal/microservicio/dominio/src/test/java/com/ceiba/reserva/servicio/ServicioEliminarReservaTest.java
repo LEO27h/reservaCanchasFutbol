@@ -22,7 +22,8 @@ public class ServicioEliminarReservaTest {
         Reserva reserva = new ReservaTestDataBuilder().build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
-        ServicioEliminarReserva servicioEliminarReserva = new ServicioEliminarReserva(repositorioReserva);
+        ServicioDeFechaYHora fechaYHora = Mockito.mock(ServicioDeFechaYHora.class);
+        ServicioEliminarReserva servicioEliminarReserva = new ServicioEliminarReserva(repositorioReserva, fechaYHora);
         // act - assert
         BasePrueba.assertThrows(() -> servicioEliminarReserva.ejecutar(Mockito.anyLong()), ExcepcionReservaNoEncontrada.class, "La reserva no existe en el sistema");
 
@@ -32,11 +33,15 @@ public class ServicioEliminarReservaTest {
     public void fechaCancelacionValida(){
         // arrange
 
-        Reserva reserva = new ReservaTestDataBuilder().conFechaDeJuego(LocalDateTime.now().minus(5, ChronoUnit.DAYS)).build();
+        Reserva reserva = new ReservaTestDataBuilder()
+                .conFechaDeJuego(LocalDateTime.of(2021, 03, 05, 18, 00))
+                .build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(true);
         Mockito.when(repositorioReserva.obtener(Mockito.anyLong())).thenReturn(reserva);
-        ServicioEliminarReserva servicioEliminarReserva = new ServicioEliminarReserva(repositorioReserva);
+        ServicioDeFechaYHora fechaYHora = Mockito.mock(ServicioDeFechaYHora.class);
+        Mockito.when(fechaYHora.actual()).thenReturn(LocalDateTime.of(2021, 03, 04, 23, 00));
+        ServicioEliminarReserva servicioEliminarReserva = new ServicioEliminarReserva(repositorioReserva, fechaYHora);
         // act - assert
         BasePrueba.assertThrows(() -> servicioEliminarReserva.ejecutar(reserva.getIdReserva()), ExcepcionNoCumpleCondicionCancelacion.class, "La reserva no puede cancelarse con menos de un día de anticipación");
     }
