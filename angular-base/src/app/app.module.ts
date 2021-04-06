@@ -8,8 +8,8 @@ import { ProductoModule } from '@producto/producto.module';
 import { ReservaModule } from "./feature/reserva/reserva.module";
 import { CoreModule } from '@core/core.module';
 import { CookieService } from 'ngx-cookie-service';
-
-
+import { ReservaService } from './feature/reserva/shared/service/reserva.service';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,9 +21,10 @@ import { CookieService } from 'ngx-cookie-service';
     AppRoutingModule,
     ProductoModule,
     ReservaModule,
-    CoreModule
+    CoreModule,
+    HttpClientModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, ReservaService],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

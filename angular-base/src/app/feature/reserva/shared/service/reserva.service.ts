@@ -9,17 +9,19 @@ export class ReservaService {
     constructor(protected http: HttpService) {}
 
     public listar() {
-        return this.http.doGet<Reserva[]>(`${environment.endpoint}/api`, this.http.optsName('reservas-canchas'));
+        alert(`${environment.endpoint}/reservas-canchas`)
+        return this.http.doGet<Reserva[]>(`${environment.endpoint}/reservas-canchas`);
       }
     
       public crear(reserva: Reserva) {
-        return this.http.doPost<Reserva, boolean>(`${environment.endpoint}/api`, reserva,
-                                                    this.http.optsName('reservas-canchas'));
+        alert(reserva.idReserva + " " + reserva.idUsuario + " " + reserva.valorPagado + " " + reserva.fechaDeJuego 
+        + " " + reserva.capacidadCancha + " " + reserva.pagoCompletado);
+        alert("crear form service");
+        return this.http.doPost<Reserva, boolean>(`${environment.endpoint}/reservas-canchas`, reserva);
       }
     
       public eliminar(reserva: Reserva) {
-        return this.http.doDelete<boolean>(`${environment.endpoint}/api/${reserva.idReserva}`,
-                                                     this.http.optsName('reservas-canchas'));
+        return this.http.doDelete<boolean>(`${environment.endpoint}/reservas-canchas/${reserva.idReserva}`);
       }
       
     }

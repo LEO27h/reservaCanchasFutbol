@@ -15,5 +15,6 @@ public class ManejadorListarReservas {
         this.daoReserva = daoReserva;
     }
 
-    public List<DtoReserva> ejecutar(){ return this.daoReserva.listar(); }
+    public List<DtoReserva> ejecutar(){
+        return this.daoReserva.listar(); }
 }

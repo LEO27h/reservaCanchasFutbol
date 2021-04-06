@@ -1,1 +1,9 @@
-<p>reserva works!</p>
+<nav>
+    <a id="linkProducto" routerLink="./" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">Reserva </a>
+    <a id="linkCrearReserva" style="margin-left: 30px;" routerLink="./crear" routerLinkActive="active">Crear reserva </a>
+    <a id="linkCancelarReserva" style="margin-left: 30px;" routerLink="./eliminar" routerLinkActive="active">Cancelar reserva </a>
+    <a id="linkListarReserva" style="margin-left: 30px;" routerLink="./listar" routerLinkActive="active">Listar reserva </a>
+  </nav>
+  <router-outlet></router-outlet>
+  

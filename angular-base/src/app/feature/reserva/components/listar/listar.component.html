@@ -1,1 +1,45 @@
-<p>listar works!</p>
+<!-- <div id="reservas">
+  <ul class="reservas">
+    <li *ngFor="let reserva of listaReservas | async">
+      <span>{{item.idReserva}}</span> {{item.idUsuario}}
+    </li>
+  </ul>
+</div> -->
+
+<div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="Reservas"></h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>ID RESERVA</th>
+              <th>ID USUARIO</th>
+              <th>VALOR PAGADO</th>
+              <th>FECHA DE JUEGO</th>
+              <th>CAPACIDAD CANCHA</th>
+              <th>PAGO COMPLETADO</th>
+              <th>ACCIONES</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let reserva of listaReservas | async" class="text-center">
+              <td>{{reserva.idReserva}}</td>
+              <td>{{reserva.idUsuario}}</td>
+              <td>{{reserva.valorPagado}}</td>
+              <td>{{reserva.fechaDeJuego}}</td>
+              <td>{{reserva.capacidadCancha}}</td>
+              <td>{{reserva.pagoCompletado}}</td>
+              <td>
+                  <button class="btn btn-warning">Abonar</button>
+                  <button class="btn btn-danger" style="margin-left: 20px;">Cancelar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

@@ -1,1 +1,43 @@
-<p>crear works!</p>
+<h1>Registrar Reserva</h1>
+<h3>Ejemplo validacion de formularios reactivos con directiva</h3>
+<form [formGroup]="reservaForm" (ngSubmit)="crear(reserva)">
+    <div class="row">
+        <div class="col-sm-2">
+            <label>Identificación usuario:</label>
+        </div>
+        <div class="col-sm-4">
+            <input validar type="text" [(ngModel)]="reserva.idUsuario" id="idUsuario" name="idUsuario" placeholder="Número de identificación del usuario"
+            class="form-control" formControlName="idUsuario">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label>Monto a pagar:</label>
+        </div>
+        <div class="col-sm-4">
+            <input validar type="text" [(ngModel)]="reserva.valorPagado" id="valorPagado" name="valorPagado" placeholder="Cantidad de dinero para realizar pago completo o abono de al menos 50%"
+            class="form-control" formControlName="valorPagado">
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <label>Fecha de juego:</label>
+      </div>
+      <div class="col-sm-4">
+        <input validar type="text" [(ngModel)]="reserva.fechaDeJuego" id="fechaDeJuego" name="fechaDeJuego"  type="datetime-local" placeholder="Fecha de juego" class="form-control"
+          formControlName="fechaDeJuego">
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+          <label>Tipo de cancha:</label>
+        </div>
+        <div class="col-sm-4">
+          <input validar type="text" [(ngModel)]="reserva.capacidadCancha" id="capacidadCancha" name="capacidadCancha" placeholder="Tipo de cancha(Fubol ocho o Futbol cinco)" class="form-control"
+            formControlName="capacidadCancha">
+        </div>
+      </div>
+      <div class="container">
+          <button (click) = "crear(reserva)" class="btn btn-info">Registrar</button>
+      </div>
+</form>

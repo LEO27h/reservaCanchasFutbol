@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { Reserva } from '../../shared/model/reserva';
+import { ReservaService } from './../../shared/service/reserva.service';
 
 @Component({
   selector: 'app-listar',
@@ -6,10 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listar.component.css']
 })
 export class ListarComponent implements OnInit {
+  public listaReservas: Observable<Reserva[]>;
 
-  constructor() { }
+  constructor(protected reservaService: ReservaService) { }
 
   ngOnInit(): void {
+    this.listaReservas = this.reservaService.listar();
   }
 
 }
